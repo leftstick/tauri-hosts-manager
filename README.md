@@ -10,7 +10,7 @@ You may need to approve it once authentication dialog displayed, Since modifying
 
 ## Download
 
-- Mac 11.11+: [64bit](https://github.com/leftstick/hosts-high/releases/download/1.0.0/tauri-hosts-manager_1.0.0_x64.dmg.zip)
+- Mac 11.11+: [64bit](https://github.com/leftstick/tauri-hosts-manager/releases/download/1.0.0/tauri-hosts-manager_1.0.0_x64.zip)
 
 ## How To Contribute
 
