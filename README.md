@@ -1,7 +1,29 @@
-# Tauri + React + Typescript
+# Tauri Hosts Manager
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+This is a tiny tool for quick managing hosts file
 
-## Recommended IDE Setup
+![](./docs/preview.gif)
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-hosts-managers.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+## Permission
+
+You may need to approve it once authentication dialog displayed, Since modifying hosts file require admin privileges.
+
+## Download
+
+- Mac 11.11+: [64bit](https://github.com/leftstick/hosts-high/releases/download/1.0.0/tauri-hosts-manager_1.0.0_x64.dmg.zip)
+
+## How To Contribute
+
+- clone repo first
+- make sure you have [rust](https://www.rust-lang.org/) installed
+- make sure you have [nodejs](https://nodejs.org/) installed
+
+```bash
+pnpm i
+pnpm tauri dev
+```
+
+## LICENSE
+
+[mit license]: https://raw.githubusercontent.com/leftstick/tauri-hosts-manager/master/LICENSE
+[david-url]: https://david-dm.org/leftstick/tauri-hosts-manager.png

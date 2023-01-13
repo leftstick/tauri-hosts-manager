@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+.umi/
+.umi-production/
 
 # Editor directories and files
 .vscode/*

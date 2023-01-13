@@ -3,27 +3,24 @@
     windows_subsystem = "windows"
 )]
 
-use std::fs;
+mod commands;
+mod state;
+mod utils;
 
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
-
-#[tauri::command]
-fn can_write(file_path: &str) -> bool {
-
-    // Check if able to write inside directory
-    match fs::metadata(file_path) {
-        Ok(md) => !md.permissions().readonly(),
-        Err(_) => false,
-    }
-}
+use crate::commands::hosts_manager::{
+    change_file_writable, is_file_readonly, read_hosts, write_hosts,
+};
+use crate::commands::say_hello::greet;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet, can_write])
+        .invoke_handler(tauri::generate_handler![
+            greet,
+            read_hosts,
+            write_hosts,
+            is_file_readonly,
+            change_file_writable
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
