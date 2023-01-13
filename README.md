@@ -1,6 +1,8 @@
 # Tauri Hosts Manager
 
-This is a tiny tool for quick managing hosts file
+This is a tiny tool for quick managing hosts file.
+
+> It is build on top of [tauri](https://tauri.app/), you can compare with the electron version [hosts-high](https://github.com/leftstick/hosts-high). The size reduce badly. I love it
 
 ![](./docs/preview.gif)
 
