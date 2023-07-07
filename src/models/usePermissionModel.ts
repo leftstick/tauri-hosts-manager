@@ -1,5 +1,5 @@
-import { changeHostWritable, isHostFileReadonly } from '@/os';
 import { showPopupInput } from '@/components';
+import { changeHostWritable, isHostFileReadonly } from '@/os';
 import { message } from 'antd';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -17,20 +17,21 @@ function usePermissionModel() {
   }, [checkCanWriteHost]);
 
   const requestPermission = useCallback(async () => {
-    
-      const result = showPopupInput('Please enter your password','password', async (password)=> {
+    const result = showPopupInput(
+      'Please enter your password',
+      'password',
+      async (password) => {
         try {
           await changeHostWritable(password);
           setCanWriteHost(true);
-          result.destroy()  
+          result.destroy();
         } catch (error: any) {
-          console.log(error)
+          console.log(error);
           message.error(error.message, 5);
         }
-        
-      }, null)
-     
-    
+      },
+      null,
+    );
   }, [checkCanWriteHost, setCanWriteHost]);
 
   return {

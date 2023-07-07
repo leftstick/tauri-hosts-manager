@@ -1,5 +1,6 @@
 import { IHost, IOSResponse } from '@/IType';
 import { invoke } from '@tauri-apps/api';
+import { preprocessEmptySpace } from './utils/string';
 
 const isWindows = process.platform === 'win32';
 
@@ -15,14 +16,14 @@ export async function getOSHosts(): Promise<IHost[]> {
   const response = await invoke<IOSResponse<string>>('read_hosts', {
     filePath: HOSTS,
   });
-  
+
   if (!response.success) {
     throw new Error(response.message);
   }
 
   const lines = response.data.split('\n');
 
-  return lines.map((line) => {
+  return lines.map((line: string) => {
     if (line.startsWith('#') || line === '') {
       return {
         ip: line,
@@ -32,10 +33,13 @@ export async function getOSHosts(): Promise<IHost[]> {
         alias: '',
       };
     }
-    const firstSpaceIndex = line.indexOf(' ');
+
+    const _line = preprocessEmptySpace(line);
+    const firstSpaceIndex = _line.indexOf(' ');
+
     return {
-      ip: line.slice(0, firstSpaceIndex),
-      domain: line.slice(firstSpaceIndex).trim(),
+      ip: _line.slice(0, firstSpaceIndex),
+      domain: _line.slice(firstSpaceIndex).trim(),
       disabled: false,
       invalid: false,
       alias: '',
@@ -102,7 +106,9 @@ export async function modifyOSHost(
 }
 
 export async function isHostFileReadonly() {
-  const response = await invoke<IOSResponse<boolean>>('is_file_readonly', { filePath: HOSTS });
+  const response = await invoke<IOSResponse<boolean>>('is_file_readonly', {
+    filePath: HOSTS,
+  });
 
   if (!response.success) {
     throw new Error(response.message);
